@@ -29,7 +29,12 @@ public class JacksonConfig {
     @Bean
     @Qualifier("json")
     public ObjectMapper jsonMapper(Jackson2ObjectMapperBuilder builder) {
-       /* // 美化输出
+
+
+
+        ObjectMapper mapper = builder.createXmlMapper(false).build();
+
+        /* // 美化输出
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         // 允许序列化空的POJO类
         // （否则会抛出异常）
@@ -53,7 +58,6 @@ public class JacksonConfig {
         // 将内容包裹为一个JSON属性，属性名由@JsonRootName注解指定
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
         */
-        ObjectMapper mapper = builder.createXmlMapper(false).build();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         return mapper;
